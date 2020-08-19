@@ -1,0 +1,111 @@
+#1 CanMakeTriangles:
+inline bool isTriangle(const int &a, const int &b, const int &c) {
+    return (a + b > c) && (a + c > b) && (b + c > a);
+}
+
+std::vector<int> canMakeTriangle(std::vector<int> arr) {
+    if (arr.size() <= 2) return vector<int>{};
+    
+    vector<int> triangles(arr.size() - 2);
+    
+    for (int i = 2; i < arr.size(); i++) {
+        triangles[i - 2] = isTriangle(arr[i - 2], arr[i - 1], arr[i]) ? 1 : 0;
+    }
+    
+    return triangles;
+}
+
+
+#2 Concat Swap
+def get_string(string_builder):
+    return "".join(string_builder)
+
+def isOdd(n):
+    return n & 1
+
+def getListOfSubstrings(s, sizes):
+    index = 0
+    substrings = []
+    
+    for i in range(len(sizes)):
+        new_string = s[index : index +sizes[i]]
+        index += sizes[i]
+        substrings.append(new_string)
+        
+    return substrings
+
+def concatSwaps(s, sizes):
+    substrings = getListOfSubstrings(s, sizes)
+    
+    string_builder = []
+    
+    for i in range(len(sizes) // 2):
+        index = 2 * i
+        string_builder.append(substrings[index + 1])
+        string_builder.append(substrings[index])      
+   
+    if isOdd(len(sizes)):
+        string_builder.append(substrings[-1])
+        
+    string = get_string(string_builder)
+    
+    return string
+
+
+#3 digitAnagrams:
+long long digitAnagrams(vector<int> v){
+	map<string, long long> mp;
+	for(auto x:v){
+		string str = to_string(x);
+		sort(str.begin(), str.end());
+		mp[str]++;
+	}
+	long long ans=0;
+	for(auto x:mp){
+		long long  p = (x.second*(x.second-1))/2;
+		ans+=p;
+	}
+	return ans;
+}
+
+#4 sortChessSubsquares:
+#define ll long long int
+
+std::vector<std::vector<int>> sortChessSubsquares(std::vector<std::vector<int>> numbers, std::vector<std::vector<int>> queries) {
+    for (auto query : queries) {
+        int x = query[0];
+        int y = query[1];
+        int w = query[2];
+        vector<ll> whites;
+    vector<ll> blacks;
+    for(ll i=x;i<x+w;i++){
+        for(ll j=y;j<y+w;j++){
+            if((i+j)%2==0){
+                blacks.push_back(numbers[i][j]);
+            
+            }
+            else if((i+j)%2==1){
+                whites.push_back(numbers[i][j]);
+            }
+        }
+    }
+        sort(blacks.begin(),blacks.end());
+        sort(whites.begin(),whites.end());
+        ll k=0,l=0;
+        for(ll i=x;i<x+w;i++){
+        for(ll j=y;j<y+w;j++){
+            if((i+j)%2==0){
+                numbers[i][j]= blacks[k];
+                k++;
+            }
+            else if((i+j)%2==1){
+                numbers[i][j]= whites[l];
+                l++;
+            }
+        }
+    }
+    }
+    
+    
+   return numbers;
+}
