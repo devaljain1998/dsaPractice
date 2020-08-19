@@ -1,0 +1,25 @@
+// elections:
+void test() {
+    //A, B, Coalition government
+
+    //TC1
+    q = "--AB--AB---A--"; votebank.flush();
+    assert(decideTheFate() == "A");
+    cout << "TC1 cleared\n";
+
+    //TC2
+    q = "A---"; votebank.flush();
+    assert(decideTheFate() == "A");
+    cout << "TC2 cleared\n";
+
+    //TC1
+    q = "A---B"; votebank.flush();
+    assert(decideTheFate() == "Coalition government");
+    cout << "TC3 cleared\n";
+}
+
+
+    test();
+    cout << "Success\n";
+    return 0;
+

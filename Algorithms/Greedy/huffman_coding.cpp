@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+//INCOMPLETE ------>
 //Test Cases:
 /*
 INPUT:
@@ -22,9 +23,11 @@ e: 111
 struct CharacterNode{
     char character;
     int frequency;
+    CharacterNode *left_ptr = NULL, *right_ptr = NULL;
     //Constructors:
     CharacterNode(): character('$'), frequency(0) {}
     CharacterNode(char c, int f): character(c), frequency(f) {}
+    CharacterNode(char c, int f, CharacterNode a, CharacterNode b): character(c), frequency(f), left_ptr(&a), right_ptr(&b) {}
 };
 
 struct CharacterNodeComparator{
@@ -49,21 +52,27 @@ void displayVector(vector <CharacterNode> &data){
     cout << endl;
 }
 
-vector<CharacterNode> minHeapifyData(vector<CharacterNode> &initialData){
+void minHeapifyData(vector<CharacterNode> &initialData){
     priority_queue <CharacterNode, vector<CharacterNode>, CharacterNodeComparator> minHeap; 
 
     for( ini = initialData.begin(); ini != initialData.end(); ini++ ){
         minHeap.push(*ini);
     }
+    auto ini = initialData.begin();
+    for( auto minElement = minHeap.begin(); minElement != minHeap.end(); minElement++, ini++ ){
+        *ini = *minElement;
+    }
 
-    return minHeap;
 }
 
+void getHuffmanCodes(vector<CharacterNode> initialData){
 
+}
 
 int main(){
     int size = 6;
     vector<CharacterNode> initialData;
-
+    inputData(size, initialData);
+    displayVector(initialData);
     return 0;
 }

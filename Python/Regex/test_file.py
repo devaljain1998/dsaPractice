@@ -28,7 +28,8 @@ def inorder(root):
 	if root: 
 		inorder(root.left) 
 		print(root.val) 
-		inorder(root.right) 
+		inorder(root.right)
+		# while()
 
 
 # Driver program to test the above functions 
