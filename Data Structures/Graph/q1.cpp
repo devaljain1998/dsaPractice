@@ -50,7 +50,7 @@ public:
         q.push(source); visitedNodes.insert(source);
 
         while (! q.empty()) {
-            const int currentNode = q.top();
+            const int currentNode = q.front();
             q.pop();
             visitedNodes.insert(currentNode);
             // Fetch all the nodes of the of the current node:
